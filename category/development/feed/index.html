@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Development &#8211; Tuhinanshu’s Blog</title>
+	<atom:link href="http://blog.tuhinanshu.com/category/development/feed" rel="self" type="application/rss+xml" />
+	<link>http://blog.tuhinanshu.com</link>
+	<description>Thoughts and Things by Terence Tuhinanshu</description>
+	<lastBuildDate>Fri, 02 Sep 2016 03:35:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	
+<site xmlns="com-wordpress:feed-additions:1">43119729</site>	<item>
+		<title>Sorting SimpleXML Entries by Single Key</title>
+		<link>http://blog.tuhinanshu.com/sorting-simplexml-entries-by-single-key</link>
+		<comments>http://blog.tuhinanshu.com/sorting-simplexml-entries-by-single-key#respond</comments>
+		<pubDate>Tue, 25 Feb 2014 17:33:58 +0000</pubDate>
+		<dc:creator><![CDATA[Terence]]></dc:creator>
+				<category><![CDATA[Development]]></category>
+		<category><![CDATA[php]]></category>
+		<category><![CDATA[simplexml]]></category>
+
+		<guid isPermaLink="false">http://blog.tuhinanshu.com/?p=111</guid>
+		<description><![CDATA[Given the following XML that has been loaded into a SimpleXML object in PHP: [crayon-57fc63733d84f323103632/] To sort by name, do the following: [crayon-57fc63733d864422355298/] To sort by city, do the following: [crayon-57fc63733d86f706835415/] This is a simple technique that works when you have a single key by which you wish to sort the XML. We create the &#8230; <a href="http://blog.tuhinanshu.com/sorting-simplexml-entries-by-single-key" class="more-link">Continue reading<span class="screen-reader-text"> "Sorting SimpleXML Entries by Single Key"</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Given the following XML that has been loaded into a SimpleXML object in PHP:</p>
+<p></p><pre class="crayon-plain-tag">&lt;person&gt;
+  &lt;name&gt;Angela&lt;/name&gt;
+  &lt;address&gt;
+    &lt;street&gt;123 Arbor St&lt;/street&gt;
+    &lt;city&gt;Ann Arbor&lt;/city&gt;
+  &lt;/address&gt;
+&lt;/person&gt;
+&lt;person&gt;
+  &lt;name&gt;Becky&lt;/name&gt;
+  &lt;address&gt;
+    &lt;street&gt;234 Buckingham Ave&lt;/street&gt;
+    &lt;city&gt;Boston&lt;/city&gt;
+  &lt;/address&gt;
+&lt;/person&gt;
+&lt;person&gt;
+  &lt;name&gt;Charlie&lt;/name&gt;
+  &lt;address&gt;
+    &lt;street&gt;345 Cherry Ln&lt;/street&gt;
+    &lt;city&gt;Charlotte&lt;/city&gt;
+  &lt;/address&gt;
+&lt;/person&gt;</pre><p> </p>
+<p>To sort by <code>name</code>, do the following:</p><pre class="crayon-plain-tag">$xml = simplexml_load_file($xmlfile);
+
+$data = array();
+
+foreach ($xml as $x) {
+  $data[(string) $x-&gt;name] = $x;
+}
+
+ksort($data);</pre><p>To sort by <code>city</code>, do the following:</p><pre class="crayon-plain-tag">$xml = simplexml_load_file($xmlfile);
+
+$data = array();
+
+foreach ($xml as $x) {
+  $data[(string) $x-&gt;address-&gt;city] = $x;
+}
+
+ksort($data);</pre><p>This is a simple technique that works when you have a single key by which you wish to sort the XML. We create the <code>$data</code> array and associate the key (<code>name</code> in the former case, <code>city</code> in the latter) with the actual element, and let <a title="ksort on PHP.net" href="http://php.net/ksort" target="_blank">ksort</a> take care of the rest. ksort sorts an array by the key while maintaining the association.<br />
+<span id="more-111"></span><br />
+<h3>Motivation</h3>
+<p>The reason for this post is that while Googling I kept finding more complex solutions which included <a href="http://stackoverflow.com/questions/8285029/sort-simplexml-array" target="_blank">usort with a custom compare function</a>, or <a href="http://stackoverflow.com/questions/8353129/php-simplexml-array-multisort-kind-of-works" target="_blank">array_multisort which was even more complex</a>, or <a href="http://stackoverflow.com/questions/2119686/sorting-an-array-of-simplexml-objects" target="_blank">using a third party implementation</a> like <a title="SimpleDOM on Google Code" href="https://code.google.com/p/simpledom/" target="_blank">SimpleDOM</a>. This was much simpler and quicker, and I wanted to record this for future use.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.tuhinanshu.com/sorting-simplexml-entries-by-single-key/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">111</post-id>	</item>
+	</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Object Caching 567/582 objects using disk
+Page Caching using disk: enhanced
+Page cache debug info:
+Engine:             disk: enhanced
+Cache key:          blog.tuhinanshu.com/category/development/feed/_index.html
+Creation Time:      1476158323.000s
+Header info:
+X-Powered-By:        PHP/5.4.42
+Set-Cookie:          wfvt_3916992646=57fc63732d8b3; expires=Tue, 11-Oct-2016 04:28:43 GMT; path=/; httponly
+Last-Modified:       Fri, 02 Sep 2016 03:35:12 GMT
+Link:                <http://blog.tuhinanshu.com/wp-json/>; rel="https://api.w.org/"
+Content-Type:        application/rss+xml; charset=UTF-8
+Database Caching 4/26 queries in 0.009 seconds using disk
+
+ Served from: blog.tuhinanshu.com @ 2016-10-11 03:58:43 by W3 Total Cache -->
